@@ -1,0 +1,23 @@
+\begin{algorithm}
+\caption{Procedure for follow-the-satoshi in a stake tree, taking a CSPRNG $\Re$ and a stake tree $\mathbb{T}$ as input, and outputs a wallet $\mathcal{W}$ chosen at random with probability proportional to the number of coins in the wallet. The stake tree is modeled as a one-indexed array where $\mathbb{T}[1]$ is the root of the tree. Each node $\mathbb{T}[i]$, $1 \le i \le |\mathbb{T}|$ is a tuple $(x_1, x_2, \mathcal{W})$ where $x_1$ is the total amount of coins in the left subtree, $x_2$ is the total amount of coins in the right subtree, and $\mathcal{W}$ is the wallet of a stakeholder or \texttt{nil} if the node is not a leaf node.}
+\label{alg:fts-tree}
+\begin{algorithmic}
+\Procedure{$\text{fts-tree}(\Re, \mathbb{T}) \rightarrow \mathcal{W}$}{}
+\State \textbf{assume~} $|\mathbb{T}| \ge 3$
+\State $i \gets 1$ \Comment{index of root node}
+\Loop
+  \If{$\mathbb{T}[i]$ is a leaf}
+    \State \Return $\mathbb{T}[i].{\text{wallet}}$
+  \EndIf
+  \State $x_1 \gets \mathbb{T}[i].{x_1}$
+  \State $x_2 \gets \mathbb{T}[i].{x_2}$
+  \State $r \gets \Re(x_1 + x_2)$
+  \If{$1 \le r \le x_1$} \Comment{left subtree}
+    \State $i \gets i \cdot 2$
+  \Else \Comment{right subtree}
+    \State $i \gets i \cdot 2 + 1$
+  \EndIf
+\EndLoop
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}

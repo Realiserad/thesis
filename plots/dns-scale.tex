@@ -1,0 +1,55 @@
+\pgfplotstableread[col sep=comma]{
+    date, variable
+    2011 Q1, 210
+    2011 Q2, 215
+    2011 Q3, 220
+    2011 Q4, 225
+    2012 Q1, 233
+    2012 Q2, 240
+    2012 Q3, 246
+    2012 Q4, 252
+    2013 Q1, 256
+    2013 Q2, 261
+    2013 Q3, 265
+    2013 Q4, 271
+    2014 Q1, 274
+    2014 Q2, 280
+    2014 Q3, 284
+    2014 Q4, 288
+    2015 Q1, 294
+    2015 Q2, 296
+    2015 Q3, 299
+    2015 Q4, 314
+    2016 Q1, 326
+    2016 Q2, 334
+    2016 Q3, 327
+    dummy, 350
+}\datatable
+\begin{figure*}
+\begin{tikzpicture}
+\begin{axis}[
+    enlargelimits=0.030,
+	legend style={at={(0.5,-0.1)},
+	anchor=north,legend columns=-1},
+	ybar interval=-0.5,
+    height=10cm,
+    width=\textwidth,
+    enlarge y limits=false,
+    ymin=200,
+    ymax=350,
+    ylabel=Number of domains $\times 10^6$,
+    xtick=data,
+    xticklabels from table={\datatable}{date},
+    x tick label style={rotate=55, anchor=east},
+    ymajorgrids=true,
+    yminorgrids=true,
+    minor tick num=2,
+    xmajorgrids=false,
+    xminorgrids=false,
+]
+\addplot [fill=blue] table [x expr=\coordindex, y=variable] {\datatable};
+\end{axis}
+\end{tikzpicture}
+\caption{The number of domains registered in the domain name system, measured quarterly from the first quarter 2011 until the third quarter 2016.}
+\label{fig:dns-scale}
+\end{figure*}
