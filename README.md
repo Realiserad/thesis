@@ -10,6 +10,11 @@ Read Online
 
 The thesis is [published at Digitala Vetenskapliga Arkivet (DiVA)](http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-210912).
 
+Presentation
+============
+
+The thesis was presented at PrimeKey Tech Days 2017, and [a recording of the presentation](https://www.youtube.com/watch?v=mpO8jqjHKSs) is available on YouTube.
+
 Code
 ====
 
